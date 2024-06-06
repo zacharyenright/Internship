@@ -1,4 +1,5 @@
 function addItem() {
+    // create variables for the list item, and get the inputted text
     var li = document.createElement("li");
     var inputText = document.getElementById("todo-input").value;
     var t = document.createTextNode(inputText); 
@@ -12,6 +13,7 @@ function addItem() {
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
 
+    // check if textbox has text
     if (inputText === '') {
         alert("Please put text in the input box");
     } else { 
@@ -24,11 +26,12 @@ function addItem() {
         li.appendChild(t);
         li.appendChild(deleteButton);
         
-        // Append list item to the list
+        // append text with li
         document.getElementById("items-list").appendChild(li);
     }
 }
 
+// delete button functionality
 function deleteItem() {
-    this.parentNode.remove(); // Remove the parent node of the clicked button (which is the list item)
+    this.parentNode.remove();
 }
