@@ -6,7 +6,7 @@ function addItem() {
 
     // delete button
     var deleteButton = document.createElement("button");
-    deleteButton.textContent = "X";
+    deleteButton.textContent = "x";
     deleteButton.onclick = deleteItem;
 
     // add checkbox
@@ -18,16 +18,13 @@ function addItem() {
         alert("Please put text in the input box");
     } else { 
 
-        // add text
+        // // add text
         document.getElementById("items-list").appendChild(li);
     
         // add item
         li.appendChild(checkbox);
         li.appendChild(t);
         li.appendChild(deleteButton);
-        
-        // append text with li
-        document.getElementById("items-list").appendChild(li);
     }
 }
 
