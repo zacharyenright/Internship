@@ -4,17 +4,19 @@
 
     <head>
         <link rel="stylesheet" href="style.css">
-
+        <script type="text/javascript" src="main.js"></script>
         <title>SOC Audit To-Do</title>
         <meta charset="utf-8">
     </head>
 
     <body>
         <h1>SOC Audit To-Do</h1>
-        <input><button class="input-box">Add</button>
+        <input type="text" id="todo-input" placeholder="Enter...">
+        <button onclick="addItem()" id="add-button">Add</button>
+       
         <div class="to-do-items">
-            <ul>
-                <ul><button>Complete</button> Finish This <button>Delete</button></ul>
+            <ul id="items-list">
+                <!-- <li><input type="checkbox"> Finish This <button id="delete" onclick="deleteItem()">X</button></li> -->
             </ul>
         </div>
     </body>
