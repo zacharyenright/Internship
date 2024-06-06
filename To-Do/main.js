@@ -13,6 +13,18 @@ function addItem() {
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
 
+    // Strikethrough function
+    var struck = false;
+    checkbox.onclick = function() {
+        if (!struck) {
+            li.style.textDecoration = "line-through";
+            struck = true;
+        } else {
+            li.style.textDecoration = "none";
+            struck = false;
+        }
+    };
+
     // check if textbox has text
     if (inputText === '') {
         alert("Please put text in the input box");
@@ -27,6 +39,7 @@ function addItem() {
         li.appendChild(deleteButton);
     }
 }
+
 
 // delete button functionality
 function deleteItem() {
