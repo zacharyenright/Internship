@@ -6,7 +6,7 @@ function addItem() {
 
     // delete button
     var deleteButton = document.createElement("button");
-    deleteButton.textContent = "x";
+    deleteButton.textContent = "X";
     deleteButton.onclick = deleteItem;
 
     // add checkbox
@@ -40,6 +40,11 @@ function addItem() {
     }
 }
 
+document.getElementById('todo-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        addItem();
+    }
+});
 
 // delete button functionality
 function deleteItem() {
