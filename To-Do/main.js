@@ -16,7 +16,6 @@ function addItem() {
 
     // delete button
     var deleteButton = document.createElement("button");
-    deleteButton.textContent = "X";
     deleteButton.onclick = deleteItem;
 
     // add checkbox
