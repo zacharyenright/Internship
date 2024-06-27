@@ -1,5 +1,5 @@
-function strikeThrough(ev, cb){
-    if(ev.target.style.textDecoration === "line-through"){
+function strikeThrough(ev, cb) {
+    if (ev.target.style.textDecoration === "line-through") {
         ev.target.style.textDecoration = "none";
         cb.checked = false;
     } else {
@@ -9,10 +9,19 @@ function strikeThrough(ev, cb){
 }
 
 function addItem() {
+    var maxChars = 50;  // Define the maximum number of characters allowed
+
     // create variables for the list item, and get the inputted text
     var li = document.createElement("li");
     var inputText = document.getElementById("todo-input").value;
-    var t = document.createTextNode(inputText); 
+
+    // Check if the input text exceeds the maximum number of characters
+    if (inputText.length > maxChars) {
+        alert(`Please limit the text to ${maxChars} characters.`);
+        return; 
+    }
+
+    var t = document.createTextNode(inputText);
 
     // delete button
     var deleteButton = document.createElement("button");
@@ -25,19 +34,22 @@ function addItem() {
     // check if textbox has text
     if (inputText === '') {
         alert("Please put text in the input box");
-    } else { 
+    } else {
         li.onclick = function(ev) {
             strikeThrough(ev, checkbox);
         };
 
-        // // add text
+        // add text
         document.getElementById("items-list").appendChild(li);
-    
+
         // add item
         li.appendChild(checkbox);
         li.appendChild(t);
         li.appendChild(deleteButton);
     }
+
+    // Clear the input box after adding the item
+    document.getElementById("todo-input").value = '';
 }
 
 // delete button functionality
