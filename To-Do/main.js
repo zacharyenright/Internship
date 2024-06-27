@@ -1,10 +1,9 @@
-function strikeThrough(ev, cb) {
-    if (ev.target.style.textDecoration === "line-through") {
-        ev.target.style.textDecoration = "none";
-        cb.checked = false;
+function strikeThrough(ev) {
+    var textElement = ev.target.parentNode.querySelector('.item-text');
+    if (textElement.style.textDecoration === "line-through") {
+        textElement.style.textDecoration = "none";
     } else {
-        ev.target.style.textDecoration = "line-through";
-        cb.checked = true;
+        textElement.style.textDecoration = "line-through";
     }
 }
 
@@ -13,7 +12,8 @@ function addItem() {
 
     // create variables for the list item, and get the inputted text
     var li = document.createElement("li");
-    var inputText = document.getElementById("todo-input").value;
+    li.className = "list-group-item d-flex justify-content-between align-items-center";
+    var inputText = document.getElementById("task-input").value;
 
     // Check if the input text exceeds the maximum number of characters
     if (inputText.length > maxChars) {
@@ -21,35 +21,38 @@ function addItem() {
         return; 
     }
 
-    var t = document.createTextNode(inputText);
+    // create a span element to hold the text
+    var textSpan = document.createElement("span");
+    textSpan.className = "item-text";
+    textSpan.innerText = inputText;
 
     // delete button
     var deleteButton = document.createElement("button");
+    deleteButton.className = "btn btn-danger btn-sm";
+    deleteButton.innerText = "Delete";
     deleteButton.onclick = deleteItem;
 
-    // add checkbox
-    var checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
+    // add done button
+    var doneButton = document.createElement("button");
+    doneButton.className = "btn btn-primary btn-sm";
+    doneButton.innerText = "Complete";
+    doneButton.onclick = function(ev) {
+        strikeThrough(ev);
+    };
 
     // check if textbox has text
     if (inputText === '') {
         alert("Please put text in the input box");
     } else {
-        li.onclick = function(ev) {
-            strikeThrough(ev, checkbox);
-        };
-
-        // add text
-        document.getElementById("items-list").appendChild(li);
-
-        // add item
-        li.appendChild(checkbox);
-        li.appendChild(t);
+        // add item to list
+        li.appendChild(doneButton);
+        li.appendChild(textSpan);
         li.appendChild(deleteButton);
+        document.getElementById("items-list").appendChild(li);
     }
 
     // Clear the input box after adding the item
-    document.getElementById("todo-input").value = '';
+    document.getElementById("task-input").value = '';
 }
 
 // delete button functionality
